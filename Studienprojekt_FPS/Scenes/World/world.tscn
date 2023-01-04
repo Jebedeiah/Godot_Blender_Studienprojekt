@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b351l3lxfkivp"]
+[gd_scene load_steps=10 format=3 uid="uid://b351l3lxfkivp"]
 
 [ext_resource type="PackedScene" uid="uid://hd5kja8e5q8g" path="res://Scenes/Player/player.tscn" id="1_fov6d"]
 [ext_resource type="PackedScene" uid="uid://cf71xa5tf8ipo" path="res://Scenes/Obstacles/obstacle.tscn" id="2_ebdxl"]
+[ext_resource type="PackedScene" uid="uid://duhpy5gmjtkht" path="res://Scenes/Enemies/enemy.tscn" id="3_p73qs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ob8by"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -41,23 +42,29 @@ transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 mesh = SubResource("PlaneMesh_gmy45")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_2eawl")
 
 [node name="Player" parent="." instance=ExtResource("1_fov6d")]
 
-[node name="Obstacle" parent="." instance=ExtResource("2_ebdxl")]
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 15.1243, 15.5131, 1, -1.09743)
 
-[node name="Obstacle2" parent="." instance=ExtResource("2_ebdxl")]
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(0.868482, 0, -5.85988, 0, 2, 0, 1.80159, 0, 2.82483, -4.68664, 1, -13.0097)
 
-[node name="Obstacle5" parent="." instance=ExtResource("2_ebdxl")]
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(3.07698, 0, 9.51699, 0, 2, 0, -1.96879, 0, 14.8739, -17.022, 1, -3.7682)
 
-[node name="Obstacle3" parent="." instance=ExtResource("2_ebdxl")]
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(-1.0031, 0, -14.6528, 0, 2, 0, 4.38082, 0, -3.35514, -13.477, 0.999998, 13.4029)
 
-[node name="Obstacle4" parent="." instance=ExtResource("2_ebdxl")]
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(-0.70035, 0, -9.96391, 0, 2, 0, 0.928452, 0, -7.51598, 7.83922, 0.999998, 16.8977)
+
+[node name="Enemy" parent="." instance=ExtResource("3_p73qs")]
+transform = Transform3D(0.7, 0, 0, 0, 2, 0, 0, 0, 0.7, 7.631, 1.03, -8.338)

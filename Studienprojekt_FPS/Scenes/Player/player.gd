@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camRoot = $CamRoot
 @onready var camera = $CamRoot/Camera3D
 @onready var weapon = $CamRoot/Camera3D/RailGun
+@onready var laserAim = $CamRoot/Camera3D/LaserAim
 
 
 func _unhandled_input(event: InputEvent) :
@@ -46,7 +47,19 @@ func _physics_process(delta):
 		
 		
 	# Fire the weapon
-	if Input.is_action_pressed("fire"):
+	if Input.is_action_just_pressed("fire"):
+				
+		
+		if laserAim.is_colliding():
+			var target = laserAim.get_collider()
+			if target.is_in_group("Enemy"):
+				print("hit enemy")
+				target.health -= weapon.damage
+		
+		
+	if Input.is_action_just_pressed("alt_fire") and not weapon.animation_player1.is_playing():
 		weapon.fire()
-
+		
+		
+		
 	move_and_slide()

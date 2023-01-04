@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd4fecglrca5f"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/Bullet.gd" id="1_blpgm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kh62e"]
+albedo_color = Color(0, 0.694118, 0.827451, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vdo2y"]
+material = SubResource("StandardMaterial3D_kh62e")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p4cga"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1n5wa"]
+radius = 0.06
+height = 0.12
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 5
+gravity_scale = 0.0
+script = ExtResource("1_blpgm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_vdo2y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_p4cga")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_1n5wa")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
