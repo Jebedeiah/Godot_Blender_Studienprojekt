@@ -1,17 +1,26 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const DEFAULT_SPEED = 5.0
+const RUNNING_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
+const SWAY = 60
+
+var SPEED = 5.0
+var running = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camRoot = $CamRoot
 @onready var camera = $CamRoot/Camera3D
-@onready var weapon = $CamRoot/Camera3D/RailGun
-@onready var laserAim = $CamRoot/Camera3D/LaserAim
+@onready var weapon = $CamRoot/Camera3D/Hand/RailGun
+@onready var aimCast = $CamRoot/Camera3D/AimCast
+@onready var hand = $CamRoot/Camera3D/Hand
+@onready var handLoc = $CamRoot/Camera3D/HandLoc
 
+func _ready():
+	hand.set_as_top_level(true)
 
 func _unhandled_input(event: InputEvent) :
 	if event is InputEventMouseButton:
@@ -25,7 +34,19 @@ func _unhandled_input(event: InputEvent) :
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
+func _process(delta):
+	hand.global_transform.origin = handLoc.global_transform.origin
+	hand.rotation.y = lerp_angle(hand.rotation.y, camRoot.rotation.y, SWAY * delta)
+	hand.rotation.x = lerp_angle(hand.rotation.x, camera.rotation.x, SWAY * delta)
+
+
 func _physics_process(delta):
+	
+	movement(delta)
+	fire_weapon()
+
+
+func movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -33,6 +54,14 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	SPEED = DEFAULT_SPEED
+	
+	if Input.is_action_just_pressed("run") and not running:
+		running = true
+	
+	if running:
+		SPEED = RUNNING_SPEED
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -42,24 +71,32 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
+		running = false;
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-		
+	
+	move_and_slide()
+
+
+func fire_weapon():
 	# Fire the weapon
 	if Input.is_action_just_pressed("fire"):
-				
 		
-		if laserAim.is_colliding():
-			var target = laserAim.get_collider()
+		if aimCast.is_colliding():
+			var target = aimCast.get_collider()
 			if target.is_in_group("Enemy"):
 				print("hit enemy")
 				target.health -= weapon.damage
 		
 		
 	if Input.is_action_just_pressed("alt_fire") and not weapon.animation_player1.is_playing():
-		weapon.fire()
 		
-		
-		
-	move_and_slide()
+		if aimCast.is_colliding():
+			var target = aimCast.get_collider()
+			var collision_point = aimCast.get_collision_point()
+			if target.is_in_group("Enemy"):
+				print("hit enemy")
+				target.health -= weapon.damage
+			weapon.fire(collision_point)
+
+

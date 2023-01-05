@@ -25,4 +25,4 @@ func give_impulse(anim_player):
 	TW.tween_property(self, "scale", Vector3(1,1,1), 0.1)	
 	set_as_top_level(true)
 	anim_player.stop()
-	apply_impulse(transform.basis.x * bullet_speed, -transform.basis.x)
+	apply_impulse(-transform.basis.z * bullet_speed, transform.basis.z)

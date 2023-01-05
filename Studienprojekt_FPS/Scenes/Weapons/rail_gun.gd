@@ -16,13 +16,11 @@ extends Node3D
 @onready var bolt = preload("res://Scenes/Particles/electric_bolt.tscn")
 
 
-func fire():
+func fire(collision_point):
 	animation_player1.play("Fire", -1.0, fire_rate)
 	
 	#var b = bullet.instantiate()
 	var b = bolt.instantiate()
 	muzzle.add_child(b)
-	print(muzzle.global_transform.basis)
-	print(b.global_transform.basis)
-	#b.set_global_transform(muzzle.get_global_transform())
+	b.look_at(collision_point, Vector3.UP)
 	b.give_impulse(animation_player2)
