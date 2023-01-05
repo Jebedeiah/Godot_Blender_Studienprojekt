@@ -13,12 +13,16 @@ extends Node3D
 @export var fire_rate = 1.0
 
 @onready var bullet = preload("res://Scenes/Weapons/bullet.tscn")
+@onready var bolt = preload("res://Scenes/Particles/electric_bolt.tscn")
 
 
 func fire():
 	animation_player1.play("Fire", -1.0, fire_rate)
 	
-	var b = bullet.instantiate()
+	#var b = bullet.instantiate()
+	var b = bolt.instantiate()
 	muzzle.add_child(b)
-	b.set_global_transform(muzzle.get_global_transform())
+	print(muzzle.global_transform.basis)
+	print(b.global_transform.basis)
+	#b.set_global_transform(muzzle.get_global_transform())
 	b.give_impulse(animation_player2)
