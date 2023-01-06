@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Scenes/Particles/electric_bolt.gd" id="1_yh8cp"]
 [ext_resource type="Texture2D" uid="uid://c053nmj8fnpml" path="res://Particles/PNG (Transparent)/spark_04.png" id="2_nk8v1"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lohd6"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_whl1s"]
 radius = 0.25
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ppvl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x682u"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -18,21 +18,21 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_ukkww"]
+[sub_resource type="Gradient" id="Gradient_wj0oc"]
 offsets = PackedFloat32Array(0.00843882, 0.540084, 1)
 colors = PackedColorArray(0, 0.539313, 0.927803, 1, 0.0233833, 0.457893, 1, 1, 0, 0.522602, 0.882513, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c6vj7"]
-gradient = SubResource("Gradient_ukkww")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2mo47"]
+gradient = SubResource("Gradient_wj0oc")
 
-[sub_resource type="Curve" id="Curve_p7qk7"]
+[sub_resource type="Curve" id="Curve_lk5vx"]
 _data = [Vector2(0, 0.772727), 0.0, 0.0, 0, 0, Vector2(0.380769, 1), 0.0, 0.0, 0, 0, Vector2(0.603846, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.772727), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_6dk8w"]
-curve = SubResource("Curve_p7qk7")
+[sub_resource type="CurveTexture" id="CurveTexture_r5ibq"]
+curve = SubResource("Curve_lk5vx")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3by8q"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0nq0w"]
 emission_shape = 1
 emission_sphere_radius = 0.05
 gravity = Vector3(0, 0, 0)
@@ -41,12 +41,12 @@ angular_velocity_max = 30.0
 angle_max = 360.0
 scale_min = 0.4
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_6dk8w")
-color_ramp = SubResource("GradientTexture1D_c6vj7")
+scale_curve = SubResource("CurveTexture_r5ibq")
+color_ramp = SubResource("GradientTexture1D_2mo47")
 
-[sub_resource type="QuadMesh" id="QuadMesh_3a2ol"]
+[sub_resource type="QuadMesh" id="QuadMesh_wn3ce"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pmbg7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yud6t"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -57,14 +57,14 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_yccd6"]
+[sub_resource type="Gradient" id="Gradient_gtji2"]
 offsets = PackedFloat32Array(0.0337553, 0.485232, 1)
 colors = PackedColorArray(0, 0.333333, 0.6, 0.705882, 0, 0.25098, 0.670588, 0.352941, 0, 0.301961, 0.501961, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ly2dq"]
-gradient = SubResource("Gradient_yccd6")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_at4bb"]
+gradient = SubResource("Gradient_gtji2")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t5luj"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wmfvn"]
 spread = 180.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 0.2
@@ -73,11 +73,11 @@ linear_accel_min = -0.2
 angle_max = 360.0
 scale_min = 0.5
 scale_max = 0.5
-color_ramp = SubResource("GradientTexture1D_ly2dq")
+color_ramp = SubResource("GradientTexture1D_at4bb")
 
-[sub_resource type="QuadMesh" id="QuadMesh_sswss"]
+[sub_resource type="QuadMesh" id="QuadMesh_26kot"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ae3f7"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_swlnr"]
 
 [node name="ElectricBolt" type="RigidBody3D"]
 collision_layer = 8
@@ -86,21 +86,21 @@ gravity_scale = 0.0
 script = ExtResource("1_yh8cp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_lohd6")
+shape = SubResource("SphereShape3D_whl1s")
 
 [node name="Bolt" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_3ppvl")
+material_override = SubResource("StandardMaterial3D_x682u")
 amount = 40
 lifetime = 0.1
-process_material = SubResource("ParticleProcessMaterial_3by8q")
-draw_pass_1 = SubResource("QuadMesh_3a2ol")
+process_material = SubResource("ParticleProcessMaterial_0nq0w")
+draw_pass_1 = SubResource("QuadMesh_wn3ce")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_pmbg7")
+material_override = SubResource("StandardMaterial3D_yud6t")
 amount = 20
 lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_t5luj")
-draw_pass_1 = SubResource("QuadMesh_sswss")
+process_material = SubResource("ParticleProcessMaterial_wmfvn")
+draw_pass_1 = SubResource("QuadMesh_26kot")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
@@ -108,7 +108,7 @@ collision_mask = 21
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(0.51, 0, 0, 0, 0.51, 0, 0, 0, 0.51, 0, 0, 0)
-shape = SubResource("SphereShape3D_ae3f7")
+shape = SubResource("SphereShape3D_swlnr")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 4.0

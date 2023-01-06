@@ -22,7 +22,6 @@ func give_impulse(anim_player):
 	anim_player.play("Vibration", -1.0, 1)
 	TW.tween_property(self, "scale", Vector3(15,15,15), 0.8)
 	await TW.finished
-	TW.tween_property(self, "scale", Vector3(1,1,1), 0.1)	
 	set_as_top_level(true)
 	anim_player.stop()
 	apply_impulse(-transform.basis.z * bullet_speed, transform.basis.z)

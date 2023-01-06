@@ -1,7 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0vfsb252v57y"]
+[gd_scene load_steps=10 format=3 uid="uid://c0vfsb252v57y"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/rail_gun.gd" id="1_0p3gw"]
 [ext_resource type="PackedScene" uid="uid://cq3f7ldwlm8j2" path="res://Imports/RailGun.glb" id="2_jgcme"]
+[ext_resource type="Texture2D" uid="uid://qkeoiadthysp" path="res://Textures/Laser/LaserColor.png" id="3_55dqa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqyy0"]
+albedo_color = Color(1, 1, 1, 0.360784)
+albedo_texture = ExtResource("3_55dqa")
+metallic = 0.9
+roughness = 0.0
+refraction_enabled = true
+refraction_scale = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sijgm"]
+albedo_color = Color(1, 1, 1, 0.333333)
+albedo_texture = ExtResource("3_55dqa")
+metallic = 0.9
+roughness = 0.0
+refraction_enabled = true
+refraction_scale = 0.15
 
 [sub_resource type="Animation" id="Animation_lmhin"]
 resource_name = "Fire"
@@ -13,7 +30,7 @@ tracks/0/path = NodePath("RailGun:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9, 2),
+"times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(-0.2, 0, 0), Vector3(0, 0, 0)]
@@ -25,10 +42,10 @@ tracks/1/path = NodePath("RailGun:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8, 0.9, 1.5, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.8, 1, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.139626), Vector3(0, 0, -0.0349066), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0.139626), Vector3(0, 0, -0.0349066), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_o4urr"]
@@ -87,6 +104,10 @@ transform = Transform3D(-8.74228e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.74228e-09, 
 script = ExtResource("1_0p3gw")
 
 [node name="RailGun" parent="." instance=ExtResource("2_jgcme")]
+
+[node name="Laser" parent="RailGun" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_nqyy0")
+surface_material_override/1 = SubResource("StandardMaterial3D_sijgm")
 
 [node name="Muzzle" type="Node3D" parent="RailGun"]
 transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 4.35914, 0.269666, 1.90544e-07)
