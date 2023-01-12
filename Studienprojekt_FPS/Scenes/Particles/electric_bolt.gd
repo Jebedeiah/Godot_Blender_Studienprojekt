@@ -2,10 +2,9 @@ extends RigidBody3D
 
 var shoot = false
 
-@export var damage = 100
-@export var bullet_speed = 5
+@export var damage = 150
+@export var bullet_speed = 10
 
-@onready var TW = create_tween()
 
 
 func _on_area_3d_body_entered(body):
@@ -14,14 +13,14 @@ func _on_area_3d_body_entered(body):
 	queue_free()
 
 
-func _on_timer_timeout():
+func start_up(anim_player):
+	anim_player.play("Vibration", -1.0, 1)
+
+
+func _on_life_timer_timeout():
 	queue_free()
 
 
-func give_impulse(anim_player):
-	anim_player.play("Vibration", -1.0, 1)
-	TW.tween_property(self, "scale", Vector3(15,15,15), 0.8)
-	await TW.finished
+func _on_impulse_timer_timeout():	
 	set_as_top_level(true)
-	anim_player.stop()
 	apply_impulse(-transform.basis.z * bullet_speed, transform.basis.z)

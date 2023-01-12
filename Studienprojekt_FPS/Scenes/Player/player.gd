@@ -1,49 +1,54 @@
 extends CharacterBody3D
 
-
+# Player movement
 const DEFAULT_SPEED = 5.0
 const RUNNING_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
-const SWAY = 60
-
+const MOUSE_SENSE = 0.05
 var SPEED = 5.0
 var running = false
+
+# Weapon
+var collision_point
+var laser_damage = 2
+var laser_active = false
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camRoot = $CamRoot
 @onready var camera = $CamRoot/Camera3D
-@onready var weapon = $CamRoot/Camera3D/Hand/RailGun
+@onready var weapon = $CamRoot/Camera3D/Hand/RailGun_new
 @onready var aimCast = $CamRoot/Camera3D/AimCast
 @onready var hand = $CamRoot/Camera3D/Hand
-@onready var handLoc = $CamRoot/Camera3D/HandLoc
 
-func _ready():
-	hand.set_as_top_level(true)
 
+
+# Mouse movement
 func _unhandled_input(event: InputEvent) :
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
-			camRoot.rotate_y(-event.relative.x * 0.001)
-			camera.rotate_x(-event.relative.y * 0.001)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+			camRoot.rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSE))
+			camera.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSE))
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
-func _process(delta):
-	hand.global_transform.origin = handLoc.global_transform.origin
-	hand.rotation.y = lerp_angle(hand.rotation.y, camRoot.rotation.y, SWAY * delta)
-	hand.rotation.x = lerp_angle(hand.rotation.x, camera.rotation.x, SWAY * delta)
+#func _process(delta):
+#	hand.global_transform.origin = handLoc.global_transform.origin
+#	hand.rotation.y = camRoot.rotation.y
+#	hand.rotation.x = camera.rotation.x
 
 
 func _physics_process(delta):
-	
-	movement(delta)
 	fire_weapon()
+	movement(delta)
 
 
 func movement(delta):
@@ -57,6 +62,7 @@ func movement(delta):
 
 	SPEED = DEFAULT_SPEED
 	
+	# Sprint
 	if Input.is_action_just_pressed("run") and not running:
 		running = true
 	
@@ -80,20 +86,26 @@ func movement(delta):
 
 func fire_weapon():
 	# Fire the weapon
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and not weapon.fireAnimPlayer.is_playing():
 		
 		if aimCast.is_colliding():
 			var target = aimCast.get_collider()
 			if target.is_in_group("Enemy"):
-				print("hit enemy")
-				target.health -= weapon.damage
-		
-		
-	if Input.is_action_just_pressed("alt_fire") and not weapon.animation_player1.is_playing():
+				target.health -= laser_damage
+				
+			collision_point = aimCast.get_collision_point()
+			weapon.fire_laser(collision_point)
+			laser_active = true
+	
+	if Input.is_action_just_released("fire") and not weapon.fireAnimPlayer.is_playing() and laser_active:
+		weapon.stop_laser()
+		laser_active = false
+	
+	
+	if Input.is_action_just_pressed("alt_fire") and not weapon.fireAnimPlayer.is_playing() and not laser_active:
 		
 		if aimCast.is_colliding():
-			var target = aimCast.get_collider()
-			var collision_point = aimCast.get_collision_point()
-			weapon.fire(collision_point)
+			collision_point = aimCast.get_collision_point()
+			weapon.fire_projectile(collision_point)
 
 
