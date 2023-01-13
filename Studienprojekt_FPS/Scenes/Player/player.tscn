@@ -46,7 +46,7 @@ ignore_texture_size = true
 
 [node name="AimCast" type="RayCast3D" parent="CamRoot/Camera3D"]
 target_position = Vector3(0, 0, -300)
-collision_mask = 21
+collision_mask = 53
 
 [node name="Hand" type="Node3D" parent="CamRoot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, -0.177, -0.416)

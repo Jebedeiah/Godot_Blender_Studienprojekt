@@ -10,7 +10,7 @@ var running = false
 
 # Weapon
 var collision_point
-var laser_damage = 2
+var laser_damage = 1.5
 var laser_active = false
 
 

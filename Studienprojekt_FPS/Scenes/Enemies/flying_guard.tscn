@@ -1,5 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://cf8bauqq7i7yd"]
+[gd_scene load_steps=36 format=3 uid="uid://cf8bauqq7i7yd"]
 
+[ext_resource type="Script" path="res://Scenes/Enemies/Enemy.gd" id="1_fyqlw"]
 [ext_resource type="Texture2D" uid="uid://b4la71lttnfma" path="res://Textures/FlyingGuard/EyeColor.png" id="1_qp7lx"]
 [ext_resource type="Texture2D" uid="uid://3g0ammqrfa8u" path="res://Textures/FlyingGuard/EyeMetal.png" id="2_2sor5"]
 [ext_resource type="Texture2D" uid="uid://dvrnr3veejq7k" path="res://Textures/FlyingGuard/EyeNormal.png" id="3_k3843"]
@@ -268,6 +269,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ie84c")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2slon"]
+radius = 0.7
+
 [sub_resource type="Animation" id="Animation_crxjc"]
 resource_name = "Inner"
 length = 5.04167
@@ -311,7 +315,11 @@ _data = {
 "Outer": SubResource("Animation_ur77w")
 }
 
-[node name="Flying_Guard" type="Node3D"]
+[node name="Flying_Guard" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 32
+collision_mask = 63
+motion_mode = 1
+script = ExtResource("1_fyqlw")
 
 [node name="Body" type="Node3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -321,17 +329,17 @@ mesh = SubResource("ArrayMesh_oerpt")
 skeleton = NodePath("")
 
 [node name="InnerRIng" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(-0.682989, -0.642131, -0.348128, -0.729419, 0.624642, 0.278873, 0.0383829, 0.444399, -0.895007, 0, 0, 0)
+transform = Transform3D(0.912695, -0.352604, -0.206538, -0.408526, -0.775343, -0.481613, 0.00968055, 0.523942, -0.851699, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0lijc")
 skeleton = NodePath("")
 
 [node name="MiddleRing" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(-0.80163, -0.54258, 0.250989, -0.59782, 0.727596, -0.336474, -5.44489e-05, -0.419774, -0.907629, 0, 0, -0.0112555)
+transform = Transform3D(0.996267, 0.0713955, -0.048533, 0.0863284, -0.826647, 0.55606, -0.000419434, -0.558173, -0.829725, 0, 0, -0.0112555)
 mesh = SubResource("ArrayMesh_hvm1t")
 skeleton = NodePath("")
 
 [node name="OuterRing" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(-0.935616, 0.249624, -0.249624, -0.353022, -0.661581, 0.661579, -1.49012e-07, 0.707106, 0.707108, 0, 0, 0)
+transform = Transform3D(-0.779934, -0.442552, 0.442552, 0.625863, -0.551497, 0.551496, 5.0664e-07, 0.707107, 0.707107, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wp4w0")
 skeleton = NodePath("")
 
@@ -347,6 +355,9 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0112555)
 mesh = SubResource("ArrayMesh_fnqgs")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2slon")
 
 [node name="InnerAni" type="AnimationPlayer" parent="."]
 autoplay = "Inner"
