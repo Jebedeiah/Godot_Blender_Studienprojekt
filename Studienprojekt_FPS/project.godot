@@ -70,3 +70,4 @@ run={
 3d_physics/layer_3="Obstacles"
 3d_physics/layer_4="Bullets"
 3d_physics/layer_5="Skybox"
+3d_physics/layer_6="Enemies"

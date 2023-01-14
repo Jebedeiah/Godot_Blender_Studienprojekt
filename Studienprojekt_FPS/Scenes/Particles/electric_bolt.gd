@@ -3,7 +3,7 @@ extends RigidBody3D
 var shoot = false
 
 @export var damage = 150
-@export var bullet_speed = 10
+@export var bullet_speed = 40
 
 
 

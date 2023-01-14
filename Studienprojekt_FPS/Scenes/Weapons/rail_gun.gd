@@ -33,10 +33,11 @@ func fire_laser(collision_point):
 	l.look_at(collision_point, Vector3.UP)
 	distance = muzzle.global_transform.origin.distance_to(collision_point)
 	l.enhance(distance);
+	l.emit()
 
 
 func stop_laser():
 	if l:
 		vibAnimPlayer.get_animation("Vibration").set_loop_mode(false)
 		vibAnimPlayer.stop()
-		l.dissolve()
+		l.freeTimerStart()

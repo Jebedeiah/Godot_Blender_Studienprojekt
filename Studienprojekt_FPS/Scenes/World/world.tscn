@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgon5jfx3hptv"]
+[gd_scene load_steps=13 format=3 uid="uid://bgon5jfx3hptv"]
 
 [ext_resource type="PackedScene" uid="uid://dhbiltafr6waa" path="res://Scenes/Player/player.tscn" id="1_fov6d"]
 [ext_resource type="PackedScene" uid="uid://cf71xa5tf8ipo" path="res://Scenes/Obstacles/obstacle.tscn" id="2_ebdxl"]
 [ext_resource type="PackedScene" uid="uid://duhpy5gmjtkht" path="res://Scenes/Enemies/enemy.tscn" id="3_p73qs"]
 [ext_resource type="PackedScene" uid="uid://tu45gi1j4yop" path="res://Scenes/Skybox/skybox.tscn" id="4_1q83y"]
 [ext_resource type="PackedScene" uid="uid://cf8bauqq7i7yd" path="res://Scenes/Enemies/flying_guard.tscn" id="5_3t3a8"]
+[ext_resource type="PackedScene" uid="uid://coooh43gqkxaw" path="res://Scenes/Map/map.tscn" id="6_8cn4b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ob8by"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -41,9 +42,11 @@ shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_gmy45")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+visible = false
 collision_mask = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
@@ -52,6 +55,7 @@ shape = SubResource("ConcavePolygonShape3D_2eawl")
 [node name="Player" parent="." instance=ExtResource("1_fov6d")]
 
 [node name="Obstacles" type="Node3D" parent="."]
+visible = false
 
 [node name="Obstacle" parent="Obstacles" instance=ExtResource("2_ebdxl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 15.1243, 15.5131, 1, -1.09743)
@@ -75,3 +79,5 @@ transform = Transform3D(0.7, 0, 0, 0, 2, 0, 0, 0, 0.7, 7.631, 1.03, -8.338)
 
 [node name="Flying_Guard" parent="." instance=ExtResource("5_3t3a8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83571, -4.93296)
+
+[node name="Map" parent="." instance=ExtResource("6_8cn4b")]
