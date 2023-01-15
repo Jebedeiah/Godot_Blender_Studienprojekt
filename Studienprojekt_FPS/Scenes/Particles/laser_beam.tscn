@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0fojrb25urhq" path="res://Particles/PNG (Transparent)/flame_01.png" id="2_u4myf"]
 [ext_resource type="Texture2D" uid="uid://dlcom58vhh4rv" path="res://Particles/PNG (Transparent)/symbol_02.png" id="3_kvbkp"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q28rc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7s1f"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -15,21 +15,21 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_cxixe"]
+[sub_resource type="Gradient" id="Gradient_ca3tb"]
 offsets = PackedFloat32Array(0, 0.476793)
 colors = PackedColorArray(0.140286, 0.608486, 1, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_70yne"]
-gradient = SubResource("Gradient_cxixe")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cr5b7"]
+gradient = SubResource("Gradient_ca3tb")
 
-[sub_resource type="Curve" id="Curve_t8jgw"]
+[sub_resource type="Curve" id="Curve_j26ps"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_2w618"]
-curve = SubResource("Curve_t8jgw")
+[sub_resource type="CurveTexture" id="CurveTexture_5hn2k"]
+curve = SubResource("Curve_j26ps")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ll43c"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sirok"]
 emission_shape = 3
 emission_box_extents = Vector3(0.001, 25, 0.001)
 gravity = Vector3(0, 0, 0)
@@ -37,18 +37,18 @@ angle_max = 360.0
 scale_min = 1.5
 scale_max = 2.0
 color = Color(0.431373, 0.705882, 1, 1)
-color_ramp = SubResource("GradientTexture1D_70yne")
+color_ramp = SubResource("GradientTexture1D_cr5b7")
 hue_variation_min = -0.1
 hue_variation_max = 0.1
 turbulence_noise_scale = 10.0
 turbulence_influence_min = 0.0
 turbulence_influence_max = 0.5
-turbulence_influence_over_life = SubResource("CurveTexture_2w618")
+turbulence_influence_over_life = SubResource("CurveTexture_5hn2k")
 
-[sub_resource type="QuadMesh" id="QuadMesh_ord4s"]
+[sub_resource type="QuadMesh" id="QuadMesh_48tcc"]
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kalqi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myowb"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -60,14 +60,14 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_38ouw"]
+[sub_resource type="Gradient" id="Gradient_57by6"]
 offsets = PackedFloat32Array(0, 0.514768, 1)
 colors = PackedColorArray(0.395919, 0.791172, 1, 1, 0, 0.597579, 0.926478, 1, 0.843137, 0.937255, 0.988235, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qnebu"]
-gradient = SubResource("Gradient_38ouw")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1j78x"]
+gradient = SubResource("Gradient_57by6")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xu3hx"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r3iw2"]
 emission_shape = 3
 emission_box_extents = Vector3(0.001, 25, 0.001)
 spread = 180.0
@@ -80,7 +80,7 @@ angle_max = 360.0
 scale_min = 2.0
 scale_max = 2.0
 color = Color(0, 0.592157, 0.929412, 1)
-color_ramp = SubResource("GradientTexture1D_qnebu")
+color_ramp = SubResource("GradientTexture1D_1j78x")
 turbulence_noise_scale = 8.28
 
 [node name="LaserBeam" type="Node3D"]
@@ -88,22 +88,22 @@ script = ExtResource("1_d03it")
 
 [node name="ParticleLaser" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_q28rc")
+material_override = SubResource("StandardMaterial3D_a7s1f")
 amount = 5000
 lifetime = 0.5
 visibility_aabb = AABB(-2, -25, -2, 4, 50, 4)
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_ll43c")
-draw_pass_1 = SubResource("QuadMesh_ord4s")
+process_material = SubResource("ParticleProcessMaterial_sirok")
+draw_pass_1 = SubResource("QuadMesh_48tcc")
 
 [node name="ParticleLaser2" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_kalqi")
+material_override = SubResource("StandardMaterial3D_myowb")
 amount = 1000
 lifetime = 0.5
 visibility_aabb = AABB(-2, -25, -2, 4, 50, 4)
-process_material = SubResource("ParticleProcessMaterial_xu3hx")
-draw_pass_1 = SubResource("QuadMesh_ord4s")
+process_material = SubResource("ParticleProcessMaterial_r3iw2")
+draw_pass_1 = SubResource("QuadMesh_48tcc")
 
 [node name="FreeTimer" type="Timer" parent="."]
 wait_time = 2.0

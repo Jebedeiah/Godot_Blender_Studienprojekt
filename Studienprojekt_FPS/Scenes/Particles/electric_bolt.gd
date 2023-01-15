@@ -8,7 +8,7 @@ var shoot = false
 
 
 func _on_area_3d_body_entered(body):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("Enemies"):
 		body.health -= damage
 	queue_free()
 

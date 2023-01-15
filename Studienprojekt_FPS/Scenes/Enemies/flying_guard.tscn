@@ -315,14 +315,14 @@ _data = {
 "Outer": SubResource("Animation_ur77w")
 }
 
-[node name="Flying_Guard" type="CharacterBody3D" groups=["Enemy"]]
+[node name="Flying_Guard" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 32
-collision_mask = 63
+collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_fyqlw")
 
 [node name="Body" type="Node3D" parent="."]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, 0, 0, 0)
 
 [node name="Eye" type="MeshInstance3D" parent="Body"]
 mesh = SubResource("ArrayMesh_oerpt")
@@ -359,6 +359,14 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_2slon")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+agent_height_offset = -1.5
+avoidance_enabled = true
+
+[node name="Sight" type="Node3D" parent="."]
+
 [node name="InnerAni" type="AnimationPlayer" parent="."]
 autoplay = "Inner"
 playback_speed = 1.5
@@ -379,3 +387,5 @@ playback_speed = 1.5
 libraries = {
 "": SubResource("AnimationLibrary_jepx7")
 }
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

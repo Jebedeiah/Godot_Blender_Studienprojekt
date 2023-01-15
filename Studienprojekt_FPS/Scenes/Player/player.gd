@@ -90,7 +90,7 @@ func fire_weapon():
 		
 		if aimCast.is_colliding():
 			var target = aimCast.get_collider()
-			if target.is_in_group("Enemy"):
+			if target.is_in_group("Enemies"):
 				target.health -= laser_damage
 				
 			collision_point = aimCast.get_collision_point()

@@ -1,5 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://coooh43gqkxaw"]
+[gd_scene load_steps=5 format=3 uid="uid://coooh43gqkxaw"]
 
-[ext_resource type="PackedScene" uid="uid://dbcyov58xyeur" path="res://Map.glb" id="1_54ekg"]
+[ext_resource type="PackedScene" uid="uid://dqp8vg2hidl4q" path="res://Map.glb" id="1_54ekg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgcri"]
+albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ya5k"]
+albedo_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex8tv"]
+albedo_color = Color(0, 0.0627451, 0.309804, 1)
 
 [node name="Map" instance=ExtResource("1_54ekg")]
+
+[node name="Map " parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgcri")
+
+[node name="Towers " parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0ya5k")
+
+[node name="Cubes " parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ex8tv")
