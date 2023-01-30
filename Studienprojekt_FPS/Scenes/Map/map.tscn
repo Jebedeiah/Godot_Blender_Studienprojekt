@@ -6,17 +6,18 @@
 albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ya5k"]
-albedo_color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+albedo_color = Color(0.168627, 0.133333, 0.282353, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex8tv"]
 albedo_color = Color(0, 0.0627451, 0.309804, 1)
 
 [node name="Map" instance=ExtResource("1_54ekg")]
 
-[node name="Map " parent="." index="0"]
+[node name="Map " parent="." index="0" groups=["navigation_mesh_source_group"]]
 surface_material_override/0 = SubResource("StandardMaterial3D_rgcri")
 
 [node name="Towers " parent="." index="1"]
+transform = Transform3D(1.00443, 0, 0, 0, 1.00443, 0, 0, 0, 1.00443, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_0ya5k")
 
 [node name="Cubes " parent="." index="2"]

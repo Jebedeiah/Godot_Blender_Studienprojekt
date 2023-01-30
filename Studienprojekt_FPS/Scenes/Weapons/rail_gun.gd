@@ -18,7 +18,7 @@ func fire_projectile(collision_point):
 	
 	var b = bolt.instantiate()
 	muzzle.add_child(b)
-	print(muzzle.global_transform.origin)
+#	print(muzzle.global_transform.origin)
 	b.look_at(collision_point, Vector3.UP)
 	b.start_up(vibAnimPlayer)
 	

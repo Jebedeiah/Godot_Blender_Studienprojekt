@@ -25,7 +25,7 @@ mesh = SubResource("CapsuleMesh_5vu40")
 shape = SubResource("CapsuleShape3D_6ur7r")
 
 [node name="Feet" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.49158, 0, 0, 0, 1, 0, -0.755759, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.755759, 0)
 shape = SubResource("BoxShape3D_gt8bv")
 
 [node name="CamRoot" type="Node3D" parent="."]
@@ -48,7 +48,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_2clf1")
-ignore_texture_size = true
 
 [node name="AimCast" type="RayCast3D" parent="CamRoot/Camera3D"]
 visible = false

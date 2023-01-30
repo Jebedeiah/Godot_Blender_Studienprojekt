@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
 # Player movement
-const DEFAULT_SPEED = 5.0
-const RUNNING_SPEED = 10.0
-const JUMP_VELOCITY = 4.5
+const DEFAULT_SPEED = 7.0
+const RUNNING_SPEED = 14.0
+const JUMP_VELOCITY = 15
 const MOUSE_SENSE = 0.05
-var SPEED = 5.0
+var SPEED = 8.0
 var running = false
+var double_jump = true
 
 # Weapon
 var collision_point
@@ -55,14 +56,21 @@ func movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	else:
+		double_jump = true
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_pressed("jump") and not is_on_floor() and double_jump:
+		velocity.y = JUMP_VELOCITY
+		double_jump = false
+		
 
-	SPEED = DEFAULT_SPEED
 	
 	# Sprint
+	SPEED = DEFAULT_SPEED
+	
 	if Input.is_action_just_pressed("run") and not running:
 		running = true
 	
