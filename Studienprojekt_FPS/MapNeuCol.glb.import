@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c7eoyt8ir4c8k"
-path="res://.godot/imported/MapNeu.glb-089d15934c5735247919a6bda85c5d5a.scn"
+uid="uid://dga2mv8prp1kh"
+path="res://.godot/imported/MapNeuCol.glb-bc8b73394d36455c999dabc125179742.scn"
 
 [deps]
 
-source_file="res://MapNeu.glb"
-dest_files=["res://.godot/imported/MapNeu.glb-089d15934c5735247919a6bda85c5d5a.scn"]
+source_file="res://MapNeuCol.glb"
+dest_files=["res://.godot/imported/MapNeuCol.glb-bc8b73394d36455c999dabc125179742.scn"]
 
 [params]
 

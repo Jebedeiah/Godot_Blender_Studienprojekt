@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4d7wf7g4i3hu"]
-
-[ext_resource type="PackedScene" uid="uid://csocagq3e4e5a" path="res://MapMesh.glb" id="1_6oicb"]
-
-[node name="MapMesh" instance=ExtResource("1_6oicb")]

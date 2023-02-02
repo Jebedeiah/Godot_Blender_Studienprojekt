@@ -1,21 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2tixunljgmb2"]
+[gd_scene load_steps=2 format=3 uid="uid://db2y3g5vbp40u"]
 
-[ext_resource type="PackedScene" uid="uid://baonrvp134n45" path="res://MapNeu.glb" id="1_pduo2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x8l0"]
-albedo_color = Color(0.101961, 0.101961, 0.101961, 1)
+[ext_resource type="PackedScene" uid="uid://c7eoyt8ir4c8k" path="res://MapNeu.glb" id="1_pduo2"]
 
 [node name="MapNeu" instance=ExtResource("1_pduo2")]
 
 [node name="Floor " parent="." index="0" groups=["navigation_mesh_source_group"]]
-surface_material_override/0 = SubResource("StandardMaterial3D_2x8l0")
 
-[node name="Platform6 " parent="." index="1" groups=["navigation_mesh_source_group"]]
+[node name="Platforms " parent="." index="1" groups=["navigation_mesh_source_group"]]
 
-[node name="Platform1 " parent="." index="2" groups=["navigation_mesh_source_group"]]
+[node name="EnemyBridges " parent="." index="2" groups=["navigation_mesh_source_group"]]
+collision_mask = 32
 
-[node name="Platform2 " parent="." index="3" groups=["navigation_mesh_source_group"]]
-
-[node name="Platform3 " parent="." index="4" groups=["navigation_mesh_source_group"]]
-
-[node name="Platform " parent="." index="5" groups=["navigation_mesh_source_group"]]
+[node name="CollisionShape3D" parent="EnemyBridges " index="0" groups=["navigation_mesh_source_group"]]

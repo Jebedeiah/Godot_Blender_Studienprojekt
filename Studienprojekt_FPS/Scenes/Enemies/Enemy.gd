@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var sight = $Sight
 
 var health = 300
-const SPEED = 8.0
+const SPEED = 7.0
 const TURN_SPEED = 4
 var distance_to_player = 0
 
