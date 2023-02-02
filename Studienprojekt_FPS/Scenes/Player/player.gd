@@ -11,7 +11,7 @@ var double_jump = true
 
 # Weapon
 var collision_point
-var laser_damage = 1.5
+var laser_damage = 2
 var laser_active = false
 
 
@@ -41,12 +41,6 @@ func _unhandled_input(event: InputEvent) :
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
-#func _process(delta):
-#	hand.global_transform.origin = handLoc.global_transform.origin
-#	hand.rotation.y = camRoot.rotation.y
-#	hand.rotation.x = camera.rotation.x
-
-
 func _physics_process(delta):
 	fire_weapon()
 	movement(delta)
@@ -65,7 +59,6 @@ func movement(delta):
 	elif Input.is_action_just_pressed("jump") and not is_on_floor() and double_jump:
 		velocity.y = JUMP_VELOCITY
 		double_jump = false
-		
 
 	
 	# Sprint

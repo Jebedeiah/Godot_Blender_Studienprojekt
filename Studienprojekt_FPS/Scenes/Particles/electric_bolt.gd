@@ -1,9 +1,10 @@
-extends RigidBody3D
+extends AnimatableBody3D
 
 var shoot = false
 
-@export var damage = 150
-@export var bullet_speed = 40
+var damage = 150
+var bullet_speed = 50
+var motion = Vector3(0,0,0)
 
 
 
@@ -20,7 +21,9 @@ func start_up(anim_player):
 func _on_life_timer_timeout():
 	queue_free()
 
+func _physics_process(delta):	
+	move_and_collide(motion * delta)
 
-func _on_impulse_timer_timeout():	
+func _on_impulse_timer_timeout():
 	set_as_top_level(true)
-	apply_impulse(-transform.basis.z * bullet_speed, transform.basis.z)
+	motion = Vector3(-transform.basis.z * bullet_speed)

@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dqp8vg2hidl4q"
+uid="uid://b7l8jebpsc7m5"
 path="res://.godot/imported/Map.glb-0ca553f193f2f1ae650799e6c3683baa.scn"
 
 [deps]
@@ -28,3 +28,4 @@ animation/fps=30
 animation/trimming=false
 import_script/path=""
 _subresources={}
+meshes/handle_gltf_embedded_images=1

@@ -84,10 +84,11 @@ hue_variation_max = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_fvws2"]
 radius = 0.25
 
-[node name="ElectricBolt" type="RigidBody3D"]
+[node name="ElectricBolt" type="AnimatableBody3D"]
 collision_layer = 8
 collision_mask = 0
-gravity_scale = 0.0
+input_ray_pickable = false
+sync_to_physics = false
 script = ExtResource("1_yh8cp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

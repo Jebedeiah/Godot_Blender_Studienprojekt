@@ -1,24 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://coooh43gqkxaw"]
 
-[ext_resource type="PackedScene" uid="uid://dqp8vg2hidl4q" path="res://Map.glb" id="1_54ekg"]
+[ext_resource type="PackedScene" uid="uid://b7l8jebpsc7m5" path="res://Map.glb" id="1_54ekg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgcri"]
-albedo_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkqj5"]
+albedo_color = Color(0.164706, 0.152941, 0.152941, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ya5k"]
-albedo_color = Color(0.168627, 0.133333, 0.282353, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upjau"]
+albedo_color = Color(0.145098, 0.145098, 0.145098, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ex8tv"]
-albedo_color = Color(0, 0.0627451, 0.309804, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ym6ti"]
+albedo_color = Color(0.0588235, 0, 0.145098, 1)
 
 [node name="Map" instance=ExtResource("1_54ekg")]
 
-[node name="Map " parent="." index="0" groups=["navigation_mesh_source_group"]]
-surface_material_override/0 = SubResource("StandardMaterial3D_rgcri")
+[node name="Floor " parent="." index="0" groups=["navigation_mesh_source_group"]]
+surface_material_override/0 = SubResource("StandardMaterial3D_dkqj5")
 
-[node name="Towers " parent="." index="1"]
-transform = Transform3D(1.00443, 0, 0, 0, 1.00443, 0, 0, 0, 1.00443, 0, 0, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_0ya5k")
+[node name="Platforms " parent="." index="1" groups=["navigation_mesh_source_group"]]
+material_override = SubResource("StandardMaterial3D_upjau")
 
-[node name="Cubes " parent="." index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_ex8tv")
+[node name="EnemyBridges " parent="." index="2" groups=["navigation_mesh_source_group"]]
+visible = false
+
+[node name="StaticBody3D" parent="EnemyBridges " index="0"]
+collision_layer = 64
+collision_mask = 32
+
+[node name="Obstacles " parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ym6ti")

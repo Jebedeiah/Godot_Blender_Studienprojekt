@@ -12,7 +12,7 @@ var current_location
 var next_location
 var new_velocity
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	current_location = global_transform.origin
 	next_location = nav_agent.get_next_path_position()
 	new_velocity = (next_location - current_location).normalized() * SPEED
@@ -32,7 +32,7 @@ func update_target_location(target_location):
 	rotate_y(deg_to_rad((sight.rotation.y) * TURN_SPEED))
 
 
-func _process(delta):
+func _process(_delta):
 	if health <= 0:
 		queue_free()	
 
