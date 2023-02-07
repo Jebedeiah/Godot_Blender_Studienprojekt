@@ -12,6 +12,9 @@ var current_location
 var next_location
 var new_velocity
 
+@onready var player = get_tree().get_first_node_in_group("Player")
+
+
 # Calculate velocity for next movement
 func _physics_process(_delta):
 	current_location = global_transform.origin
@@ -38,7 +41,8 @@ func update_target_location(target_location):
 # Free enemy when its health becomes 0
 func _process(_delta):
 	if health <= 0:
-		queue_free()	
+		player.enemy_amount -= 1
+		queue_free()
 
 
 # Computed velocity is needed for collsion avoidance between enemies
@@ -48,8 +52,21 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 
 # Show game over Scene when the player gets reached by an enemy
-func _on_area_3d_body_entered(body):
-	if body.is_in_group("Player"):
-		print("touched")
-		get_tree().change_scene_to_file("res://Scenes/Menu/game_over.tscn")
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+func _on_touch_area_body_entered(body):
+	if body == player:
+		body.health = 0
+
+
+func _on_aura_area_body_entered(body):
+	if body == player:
+		$AuraTimer.start()
+
+
+func _on_aura_area_body_exited(body):
+	if body == player:
+		$AuraTimer.stop()
+
+
+func _on_aura_timer_timeout():	
+	player.health -= 3
+	print(player.health)

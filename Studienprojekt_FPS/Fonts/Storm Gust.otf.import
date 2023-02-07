@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://lk4feouiog54"
+path="res://.godot/imported/Storm Gust.otf-e22fc554d2d70864b92f5941d904badc.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Storm Gust.otf"
+dest_files=["res://.godot/imported/Storm Gust.otf-e22fc554d2d70864b92f5941d904badc.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

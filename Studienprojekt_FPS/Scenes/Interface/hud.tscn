@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://fovkpatw73pb"]
+
+[ext_resource type="FontFile" uid="uid://bkv2ucfw5lly1" path="res://Fonts/DCC - Ash.otf" id="1_fwdqb"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EnemiesLeft" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0104167
+anchor_top = 0.0157407
+anchor_right = 0.0104167
+anchor_bottom = 0.0157407
+offset_right = 206.0
+offset_bottom = 58.0
+scale = Vector2(1.00869, 1)
+theme_override_colors/font_color = Color(0.866667, 0.282353, 0.192157, 1)
+theme_override_fonts/font = ExtResource("1_fwdqb")
+theme_override_font_sizes/font_size = 50
+text = "Enemies left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemyAmount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.121875
+anchor_top = 0.0175926
+anchor_right = 0.121875
+anchor_bottom = 0.0212963
+offset_right = 50.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.866667, 0.282353, 0.192157, 1)
+theme_override_fonts/font = ExtResource("1_fwdqb")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HP" type="Label" parent="."]
+layout_mode = 2
+offset_left = 17.0
+offset_top = 1015.0
+offset_right = 73.0
+offset_bottom = 1073.0
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.227451, 0.839216, 0, 1)
+theme_override_fonts/font = ExtResource("1_fwdqb")
+theme_override_font_sizes/font_size = 50
+text = "HP:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 2
+offset_left = 87.0
+offset_top = 1015.0
+offset_right = 135.0
+offset_bottom = 1070.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.227451, 0.839216, 0, 1)
+theme_override_fonts/font = ExtResource("1_fwdqb")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1

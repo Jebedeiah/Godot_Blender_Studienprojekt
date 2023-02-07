@@ -14,6 +14,9 @@ var collision_point
 var laser_damage = 2
 var laser_active = false
 
+# Health
+var health = 500
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,6 +26,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var weapon = $CamRoot/Camera3D/Hand/RailGun_new
 @onready var aimCast = $CamRoot/Camera3D/AimCast
 @onready var hand = $CamRoot/Camera3D/Hand
+@onready var enemy_amount = get_tree().get_nodes_in_group("Enemies").size()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -43,10 +47,18 @@ func _input(event):
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
+func _process(_delta):
+	$HUD/Health.text = str(health)
+	$HUD/EnemyAmount.text = str(enemy_amount)
+
 
 func _physics_process(delta):
 	fire_weapon()
 	movement(delta)
+	
+	if health < 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://Scenes/Menu/game_over.tscn")
 
 
 # Code for Player movement

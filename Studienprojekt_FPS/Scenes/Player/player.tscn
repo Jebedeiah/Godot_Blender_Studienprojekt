@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhbiltafr6waa"]
+[gd_scene load_steps=9 format=3 uid="uid://dthwxyi8hbk3x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_63wl7"]
 [ext_resource type="Texture2D" uid="uid://qx28ayijvvqf" path="res://Scenes/Player/Crosshair.png" id="3_2clf1"]
 [ext_resource type="Script" path="res://Scenes/Player/Hand.gd" id="3_uwlef"]
 [ext_resource type="PackedScene" uid="uid://buyqkn701spo6" path="res://Scenes/Weapons/rail_gun_new.tscn" id="4_x7ovm"]
 [ext_resource type="PackedScene" uid="uid://b63l3lmg1mogp" path="res://Scenes/Menu/pause.tscn" id="5_ty0nv"]
+[ext_resource type="PackedScene" uid="uid://fovkpatw73pb" path="res://Scenes/Interface/hud.tscn" id="6_4122m"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5vu40"]
 
@@ -58,3 +59,5 @@ sway_right = Vector3(0, -0.05, 0)
 [node name="RailGun_new" parent="CamRoot/Camera3D/Hand" instance=ExtResource("4_x7ovm")]
 
 [node name="Pause" parent="." instance=ExtResource("5_ty0nv")]
+
+[node name="HUD" parent="." instance=ExtResource("6_4122m")]

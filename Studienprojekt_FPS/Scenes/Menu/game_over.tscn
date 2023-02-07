@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bphauorxbnbxi"]
+[gd_scene load_steps=3 format=3 uid="uid://bphauorxbnbxi"]
 
+[ext_resource type="FontFile" uid="uid://lk4feouiog54" path="res://Fonts/Storm Gust.otf" id="1_lllj3"]
 [ext_resource type="Script" path="res://PlayAgainButton.gd" id="1_uktih"]
 
 [node name="GameOver" type="Control"]
@@ -23,7 +24,8 @@ layout_mode = 1
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_colors/font_color = Color(0.517647, 0.12549, 0.117647, 1)
-theme_override_font_sizes/font_size = 160
+theme_override_fonts/font = ExtResource("1_lllj3")
+theme_override_font_sizes/font_size = 200
 text = "YOU DIED"
 horizontal_alignment = 1
 vertical_alignment = 1
