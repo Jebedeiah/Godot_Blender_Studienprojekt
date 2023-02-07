@@ -1,18 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhbiltafr6waa"]
+[gd_scene load_steps=8 format=3 uid="uid://dhbiltafr6waa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_63wl7"]
 [ext_resource type="Texture2D" uid="uid://qx28ayijvvqf" path="res://Scenes/Player/Crosshair.png" id="3_2clf1"]
 [ext_resource type="Script" path="res://Scenes/Player/Hand.gd" id="3_uwlef"]
 [ext_resource type="PackedScene" uid="uid://buyqkn701spo6" path="res://Scenes/Weapons/rail_gun_new.tscn" id="4_x7ovm"]
+[ext_resource type="PackedScene" uid="uid://b63l3lmg1mogp" path="res://Scenes/Menu/pause.tscn" id="5_ty0nv"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5vu40"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ur7r"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
 collision_layer = 2
-collision_mask = 37
+collision_mask = 133
 script = ExtResource("1_63wl7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -55,3 +56,5 @@ sway_left = Vector3(0, 0.05, 0)
 sway_right = Vector3(0, -0.05, 0)
 
 [node name="RailGun_new" parent="CamRoot/Camera3D/Hand" instance=ExtResource("4_x7ovm")]
+
+[node name="Pause" parent="." instance=ExtResource("5_ty0nv")]

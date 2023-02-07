@@ -3,12 +3,14 @@ extends Node3D
 @onready var laser = $ParticleLaser
 @onready var laser2 = $ParticleLaser2
 
-
+# Emit laser particles
 func emit():
 	laser.emitting = true
 	laser2.emitting = true
 	$FreeTimer.stop()
 
+
+# shorten or lengthen the laser depending on how far away the target is
 func enhance(distance):
 	if distance > 40:
 		distance = 40
@@ -18,6 +20,7 @@ func enhance(distance):
 	laser2.position.z = -distance
 
 
+# Stop emitting the laser, but wait with freeing the particles node to show the particles fading
 func freeTimerStart():
 	laser.emitting = false
 	laser2.emitting = false

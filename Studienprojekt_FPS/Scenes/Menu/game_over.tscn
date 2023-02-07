@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bphauorxbnbxi"]
+
+[ext_resource type="Script" path="res://PlayAgainButton.gd" id="1_uktih"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverBG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.054902, 0.054902, 0.054902, 1)
+
+[node name="YouDied" type="Label" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_colors/font_color = Color(0.517647, 0.12549, 0.117647, 1)
+theme_override_font_sizes/font_size = 160
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.711741
+anchor_right = 0.5
+anchor_bottom = 0.712333
+offset_left = -43.5
+offset_top = -15.1801
+offset_right = 43.5
+offset_bottom = 15.1799
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.466667, 0.576471, 1)
+theme_override_colors/font_hover_color = Color(0.654902, 0, 0.129412, 1)
+theme_override_font_sizes/font_size = 30
+text = "Play again"
+flat = true
+script = ExtResource("1_uktih")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="PlayAgainButton" to="PlayAgainButton" method="_on_pressed"]

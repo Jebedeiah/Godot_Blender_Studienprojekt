@@ -270,7 +270,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ie84c")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2slon"]
-radius = 0.7
+radius = 0.8
 
 [sub_resource type="Animation" id="Animation_crxjc"]
 resource_name = "Inner"
@@ -317,7 +317,7 @@ _data = {
 
 [node name="Flying_Guard" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 32
-collision_mask = 111
+collision_mask = 109
 motion_mode = 1
 script = ExtResource("1_fyqlw")
 
@@ -359,8 +359,17 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_2slon")
 
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+collision_layer = 128
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, 0, 0, 0)
+shape = SubResource("SphereShape3D_2slon")
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-agent_height_offset = -2.0
+agent_height_offset = -1.5
 path_max_distance = 2.01
 avoidance_enabled = true
 
@@ -384,6 +393,7 @@ libraries = {
 "": SubResource("AnimationLibrary_jepx7")
 }
 
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="link_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_link_reached"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

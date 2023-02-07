@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Studienprojekt_FPS"
-run/main_scene="res://Scenes/World/world.tscn"
+run/main_scene="res://Scenes/Menu/menu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -72,6 +72,7 @@ run={
 3d_physics/layer_5="Skybox"
 3d_physics/layer_6="Enemies"
 3d_physics/layer_7="NavigationBridges"
+3d_physics/layer_8="EnemyArea"
 
 [physics]
 

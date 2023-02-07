@@ -9,8 +9,8 @@ extends Node3D
 @onready var bolt = preload("res://Scenes/Particles/electric_bolt.tscn")
 @onready var laser = preload("res://Scenes/Particles/laser_beam.tscn")
 
-var l = null
-var distance
+var l = null  # variable for laser instantiation
+var distance  # variable for length of laser beam
 
 
 func fire_projectile(collision_point):
@@ -18,11 +18,11 @@ func fire_projectile(collision_point):
 	
 	var b = bolt.instantiate()
 	muzzle.add_child(b)
-#	print(muzzle.global_transform.origin)
 	b.look_at(collision_point, Vector3.UP)
 	b.start_up(vibAnimPlayer)
-	
-	
+
+
+# Instantiate laser and make weapon vibrate during firing
 func fire_laser(collision_point):
 	if not l:
 		l = laser.instantiate()
