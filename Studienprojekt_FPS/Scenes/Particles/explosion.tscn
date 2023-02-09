@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3hl7b4gohq87" path="res://Particles/PNG (Transparent)/fire_02.png" id="1_jh50q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pl3y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1e1b5"]
 transparency = 1
 blend_mode = 1
 shading_mode = 0
@@ -13,14 +13,14 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_amvi4"]
+[sub_resource type="Gradient" id="Gradient_15lar"]
 offsets = PackedFloat32Array(0, 0.353712, 1)
 colors = PackedColorArray(5.0056e-06, 0.614425, 0.832686, 1, 0, 0.369453, 0.72625, 0.521569, 0.74671, 0.0841718, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qkkum"]
-gradient = SubResource("Gradient_amvi4")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3niou"]
+gradient = SubResource("Gradient_15lar")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_loqn0"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mpnvp"]
 direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0, 0)
@@ -31,17 +31,17 @@ linear_accel_max = -3.0
 angle_max = 360.0
 scale_min = 5.0
 scale_max = 5.0
-color_ramp = SubResource("GradientTexture1D_qkkum")
+color_ramp = SubResource("GradientTexture1D_3niou")
 
-[sub_resource type="QuadMesh" id="QuadMesh_5r4j1"]
+[sub_resource type="QuadMesh" id="QuadMesh_cxpxj"]
 
 [node name="Explosion" type="Node3D"]
 
 [node name="ParticleExplosion" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_4pl3y")
+material_override = SubResource("StandardMaterial3D_1e1b5")
 emitting = false
 amount = 200
 lifetime = 0.5
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_loqn0")
-draw_pass_1 = SubResource("QuadMesh_5r4j1")
+process_material = SubResource("ParticleProcessMaterial_mpnvp")
+draw_pass_1 = SubResource("QuadMesh_cxpxj")

@@ -18,6 +18,7 @@ var distance_to_player = 0
 var current_location
 var next_location
 var new_velocity
+var e = null
 
 signal enemy_killed
 
@@ -80,8 +81,9 @@ func _on_aura_timer_timeout():
 
 
 func _on_enemy_killed():
-	var e = explosion.instantiate()
-	world.add_child(e)
+	if not e:
+		e = explosion.instantiate()
+		world.add_child(e)
 	e.position = position
 	e.get_node("ParticleExplosion").emitting = true
 	queue_free()

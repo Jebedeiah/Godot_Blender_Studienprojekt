@@ -59,7 +59,7 @@ navigation_mesh = SubResource("NavigationMesh_xmsva")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 script = ExtResource("7_gfbn6")
 
-[node name="Timer" type="Timer" parent="Spawner"]
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
 
 [node name="Waves" type="Node3D" parent="Spawner"]
 
@@ -135,15 +135,17 @@ light_energy = 16.0
 omni_range = 28.409
 omni_attenuation = 0.48297
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(0.752805, -0.458963, -0.471845, 0.0124648, -0.706756, 0.707347, -0.658126, -0.538376, -0.526329, -58, 35, -58)
+[node name="Spotlights" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Spotlights"]
+transform = Transform3D(0.752805, -0.458963, -0.471845, 0.0124648, -0.706756, 0.707348, -0.658126, -0.538376, -0.526329, -58, 35, -58)
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
 spot_range = 105.933
 spot_attenuation = 0.0236831
 spot_angle = 40.44
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(0.707107, 0.5, 0.5, -1.57897e-08, -0.707107, 0.707107, 0.707107, -0.5, -0.5, 59, 35, -58)
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
@@ -151,7 +153,7 @@ spot_range = 105.933
 spot_attenuation = 0.0236831
 spot_angle = 40.44
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+[node name="SpotLight3D3" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(-0.707107, 0.5, 0.5, -8.77389e-08, -0.707107, 0.707107, 0.707107, 0.5, 0.5, 60, 35, 59)
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
@@ -159,7 +161,7 @@ spot_range = 105.933
 spot_attenuation = 0.0236831
 spot_angle = 40.44
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+[node name="SpotLight3D4" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(-0.707107, -0.5, -0.5, -6.66655e-08, -0.707107, 0.707107, -0.707107, 0.5, 0.5, -59, 35, 59)
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
@@ -167,4 +169,9 @@ spot_range = 105.933
 spot_attenuation = 0.0236831
 spot_angle = 40.44
 
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[node name="WaveTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="Spawner" method="_on_wave_timer_timeout"]

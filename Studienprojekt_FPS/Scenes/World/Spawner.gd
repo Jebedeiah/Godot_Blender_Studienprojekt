@@ -2,7 +2,9 @@ extends Node3D
 
 @onready var Enemy = preload("res://Scenes/Enemies/flying_guard.tscn")
 
-@onready var timer = $Timer
+@onready var spawn_timer = $SpawnTimer
+@onready var wave_timer = get_parent().get_node("WaveTimer")
+@onready var HUD = get_parent().get_node("HUD")
 
 @export var num_enemies = 4
 @export var seconds_between_spawns = 2
@@ -23,13 +25,10 @@ func _ready():
 func start_next_wave():
 	enemies_killed_this_wave = 0
 	current_wave_number += 1
-	if current_wave_number < waves.size():
-		current_wave = waves[current_wave_number]
-		enemies_remaining_to_spawn = current_wave.num_enemies
-		timer.wait_time = current_wave.seconds_between_spawns
-		timer.start()
-	else:
-		get_tree().change_scene_to_file("res://Scenes/Menu/victory.tscn")
+	current_wave = waves[current_wave_number]
+	enemies_remaining_to_spawn = current_wave.num_enemies
+	spawn_timer.wait_time = current_wave.seconds_between_spawns
+	spawn_timer.start()
 
 
 # Connect to the custom signal "enemy_killed" in the "flying_guard" scene
@@ -43,7 +42,7 @@ func _on_enemy_killed_signal():
 
 
 # If there are enemies left to spawn this wave then spawn the next enemy
-func _on_timer_timeout():
+func _on_spawn_timer_timeout():
 	if enemies_remaining_to_spawn:
 		var spawns = get_tree().get_nodes_in_group("spawn") # Get all spawns as a list
 		var spawn = spawns[randi() % spawns.size()] # Select a random spawn from the list
@@ -56,4 +55,13 @@ func _on_timer_timeout():
 		
 	# If all enemies are killed, start the next wave
 	elif enemies_killed_this_wave == current_wave.num_enemies:
-		start_next_wave()
+		if current_wave_number == 2:
+			get_tree().change_scene_to_file("res://Scenes/Menu/victory.tscn")
+		else:
+			HUD.get_node("NextWavePlayer").play("CountWaves")
+			spawn_timer.stop()
+			wave_timer.start()
+
+
+func _on_wave_timer_timeout():
+	start_next_wave()
