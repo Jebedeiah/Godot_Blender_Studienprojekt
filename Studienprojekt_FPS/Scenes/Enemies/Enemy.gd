@@ -1,10 +1,17 @@
 extends CharacterBody3D
 
+class_name Enemy
+
+@export var explosion : PackedScene
+
+@onready var Enemy = preload("res://Scenes/Particles/explosion.tscn")
 @onready var nav_agent = $NavigationAgent3D
 @onready var sight = $Sight
+@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var world = get_parent()
 
 var health = 300
-const SPEED = 7.0
+const SPEED = 8.0
 const TURN_SPEED = 4
 var distance_to_player = 0
 
@@ -12,7 +19,9 @@ var current_location
 var next_location
 var new_velocity
 
-@onready var player = get_tree().get_first_node_in_group("Player")
+signal enemy_killed
+
+
 
 
 # Calculate velocity for next movement
@@ -41,8 +50,7 @@ func update_target_location(target_location):
 # Free enemy when its health becomes 0
 func _process(_delta):
 	if health <= 0:
-		player.enemy_amount -= 1
-		queue_free()
+		emit_signal("enemy_killed")
 
 
 # Computed velocity is needed for collsion avoidance between enemies
@@ -67,6 +75,13 @@ func _on_aura_area_body_exited(body):
 		$AuraTimer.stop()
 
 
-func _on_aura_timer_timeout():	
+func _on_aura_timer_timeout():
 	player.health -= 3
-	print(player.health)
+
+
+func _on_enemy_killed():
+	var e = explosion.instantiate()
+	world.add_child(e)
+	e.position = position
+	e.get_node("ParticleExplosion").emitting = true
+	queue_free()

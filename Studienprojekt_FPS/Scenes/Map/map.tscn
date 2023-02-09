@@ -26,5 +26,5 @@ visible = false
 collision_layer = 64
 collision_mask = 32
 
-[node name="Obstacles " parent="." index="3"]
+[node name="Obstacles " parent="." index="3" groups=["radioactive"]]
 surface_material_override/0 = SubResource("StandardMaterial3D_ym6ti")

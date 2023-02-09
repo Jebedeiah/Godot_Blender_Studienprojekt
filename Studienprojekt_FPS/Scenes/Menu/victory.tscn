@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://Scenes/Menu/victory.gd" id="1_jba6t"]
+[ext_resource type="FontFile" uid="uid://boxij7rq72aiw" path="res://Fonts/Ghost Factory.ttf" id="1_ktsxx"]
+[ext_resource type="FontFile" uid="uid://bkv2ucfw5lly1" path="res://Fonts/DCC - Ash.otf" id="2_uyk2e"]
+[ext_resource type="Script" path="res://Scenes/Menu/PlayAgainBtn.gd" id="3_as3hh"]
+
+[sub_resource type="Animation" id="Animation_0p4rb"]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1uaku"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1s8jr"]
+_data = {
+"FadeIn": SubResource("Animation_0p4rb"),
+"RESET": SubResource("Animation_1uaku")
+}
+
+[node name="Victory" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jba6t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="PlayAgainBtn" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.461458
+anchor_top = 0.665741
+anchor_right = 0.538542
+anchor_bottom = 0.70463
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0.556863, 0.137255, 1)
+theme_override_fonts/font = ExtResource("2_uyk2e")
+theme_override_font_sizes/font_size = 40
+text = "Play Again"
+flat = true
+script = ExtResource("3_as3hh")
+metadata/_edit_use_anchors_ = true
+
+[node name="VictoryLabel" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 212.0
+theme_override_colors/font_color = Color(0, 0.482353, 0.564706, 1)
+theme_override_colors/font_shadow_color = Color(0.705882, 0.615686, 0, 1)
+theme_override_fonts/font = ExtResource("1_ktsxx")
+theme_override_font_sizes/font_size = 200
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 2
+offset_top = 320.0
+offset_right = 1920.0
+offset_bottom = 423.0
+theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
+theme_override_fonts/font = ExtResource("2_uyk2e")
+theme_override_font_sizes/font_size = 100
+text = "You managed to survive another day."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1s8jr")
+}
+
+[connection signal="pressed" from="ColorRect/PlayAgainBtn" to="ColorRect/PlayAgainBtn" method="_on_pressed"]

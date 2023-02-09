@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bphauorxbnbxi"]
+[gd_scene load_steps=3 format=3 uid="uid://ckdsufds46571"]
 
 [ext_resource type="FontFile" uid="uid://lk4feouiog54" path="res://Fonts/Storm Gust.otf" id="1_lllj3"]
-[ext_resource type="Script" path="res://PlayAgainButton.gd" id="1_uktih"]
+[ext_resource type="Script" path="res://Scenes/Menu/PlayAgainButton.gd" id="2_yjo2r"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -48,7 +48,7 @@ theme_override_colors/font_hover_color = Color(0.654902, 0, 0.129412, 1)
 theme_override_font_sizes/font_size = 30
 text = "Play again"
 flat = true
-script = ExtResource("1_uktih")
+script = ExtResource("2_yjo2r")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="PlayAgainButton" to="PlayAgainButton" method="_on_pressed"]

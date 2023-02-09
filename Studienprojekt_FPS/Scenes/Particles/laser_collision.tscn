@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3w1galt4cf2c"]
+
+[ext_resource type="Texture2D" uid="uid://bn8xkrtmrjiat" path="res://Particles/PNG (Transparent)/star_09.png" id="1_ftb3s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8n60l"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ftb3s")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_lpha2"]
+offsets = PackedFloat32Array(0, 0.515284)
+colors = PackedColorArray(1.34766e-06, 0.630131, 0.9383, 1, 0, 0.446855, 0.928271, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vujwp"]
+gradient = SubResource("Gradient_lpha2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1r4nl"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angle_max = 360.0
+scale_max = 2.0
+color = Color(0.227451, 0.380392, 0.898039, 1)
+color_ramp = SubResource("GradientTexture1D_vujwp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_m2586"]
+
+[node name="LaserCollision" type="Node3D"]
+
+[node name="CollisionParticle" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_8n60l")
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_1r4nl")
+draw_pass_1 = SubResource("QuadMesh_m2586")

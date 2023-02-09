@@ -1,9 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://yggd7iip2tqf"]
+[gd_scene load_steps=8 format=3 uid="uid://yggd7iip2tqf"]
 
 [ext_resource type="FontFile" uid="uid://boxij7rq72aiw" path="res://Fonts/Ghost Factory.ttf" id="1_xvldm"]
 [ext_resource type="FontFile" uid="uid://bkv2ucfw5lly1" path="res://Fonts/DCC - Ash.otf" id="2_bx8ed"]
 [ext_resource type="Script" path="res://Scenes/Menu/PlayButton.gd" id="3_6n5ri"]
 [ext_resource type="Script" path="res://Scenes/Menu/HowButton.gd" id="4_k0hha"]
+
+[sub_resource type="Animation" id="Animation_pkble"]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ssqg3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlbv7"]
+_data = {
+"FadeOut": SubResource("Animation_pkble"),
+"RESET": SubResource("Animation_ssqg3")
+}
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
@@ -76,5 +112,14 @@ flat = true
 script = ExtResource("4_k0hha")
 metadata/_edit_use_anchors_ = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jlbv7")
+}
+
+[node name="FadeOutTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_pressed"]
 [connection signal="pressed" from="HowButton" to="HowButton" method="_on_pressed"]
+[connection signal="timeout" from="FadeOutTimer" to="PlayButton" method="_on_fade_out_timer_timeout"]

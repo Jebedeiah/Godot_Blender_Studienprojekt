@@ -1,0 +1,60 @@
+[gd_scene load_steps=18 format=3 uid="uid://bxppddqyst4fi"]
+
+[ext_resource type="PackedScene" uid="uid://ccv8svvlve4ci" path="res://MapNew.glb" id="1_7ujy0"]
+[ext_resource type="Texture2D" uid="uid://dbaf6knuh0j8c" path="res://Textures/Map/Floor/FloorDiffuse.png" id="2_h2wrf"]
+[ext_resource type="Texture2D" uid="uid://5gcgjqmyx3fo" path="res://Textures/Map/Floor/FloorMetal.png" id="3_726e0"]
+[ext_resource type="Texture2D" uid="uid://cqayumn538y85" path="res://Textures/Map/Floor/FloorNormal.png" id="4_gicxv"]
+[ext_resource type="Texture2D" uid="uid://sxipfsi1b4r1" path="res://Textures/Map/Floor/FloorRough.png" id="5_ohypr"]
+[ext_resource type="Texture2D" uid="uid://5vwkbdgu8kmi" path="res://Textures/Map/Platform/PlatformDiffuse.png" id="6_g1hp2"]
+[ext_resource type="Texture2D" uid="uid://bo2r5en84klif" path="res://Textures/Map/Platform/PlatformMetal.png" id="7_6leso"]
+[ext_resource type="Texture2D" uid="uid://djtfhn3k4btq5" path="res://Textures/Map/Platform/PlatformNormal.png" id="8_1y0bm"]
+[ext_resource type="Texture2D" uid="uid://b8vuc8m82yw35" path="res://Textures/Map/Platform/PlatformRough.png" id="9_kufmo"]
+[ext_resource type="Texture2D" uid="uid://bqgw5nqvu2hln" path="res://Textures/Map/Obstacles/ObstaclesDiffuse.png" id="10_0bgiu"]
+[ext_resource type="Texture2D" uid="uid://i5d7m4phqbh1" path="res://Textures/Map/Obstacles/ObstaclesEmit.png" id="11_bdq8m"]
+[ext_resource type="Texture2D" uid="uid://bc5v54agnk2ro" path="res://Textures/Map/Obstacles/ObstaclesMetal.png" id="12_3hsqh"]
+[ext_resource type="Texture2D" uid="uid://bnsjyd0t5ceim" path="res://Textures/Map/Obstacles/ObstaclesNormal.png" id="13_0qn20"]
+[ext_resource type="Texture2D" uid="uid://dxjaptseten6a" path="res://Textures/Map/Obstacles/ObstaclesRough.png" id="14_y7vgk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s3iar"]
+albedo_texture = ExtResource("2_h2wrf")
+metallic = 1.0
+metallic_texture = ExtResource("3_726e0")
+roughness_texture = ExtResource("5_ohypr")
+normal_enabled = true
+normal_texture = ExtResource("4_gicxv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yoad7"]
+albedo_texture = ExtResource("6_g1hp2")
+metallic = 1.0
+metallic_texture = ExtResource("7_6leso")
+roughness_texture = ExtResource("9_kufmo")
+normal_enabled = true
+normal_texture = ExtResource("8_1y0bm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fjrg"]
+albedo_texture = ExtResource("10_0bgiu")
+metallic = 1.0
+metallic_texture = ExtResource("12_3hsqh")
+roughness_texture = ExtResource("14_y7vgk")
+emission_enabled = true
+emission_texture = ExtResource("11_bdq8m")
+normal_enabled = true
+normal_texture = ExtResource("13_0qn20")
+
+[node name="MapNew" instance=ExtResource("1_7ujy0")]
+
+[node name="Floor " parent="." index="0" groups=["navigation_mesh_source_group"]]
+surface_material_override/0 = SubResource("StandardMaterial3D_s3iar")
+
+[node name="Platforms " parent="." index="1" groups=["navigation_mesh_source_group"]]
+surface_material_override/0 = SubResource("StandardMaterial3D_yoad7")
+
+[node name="EnemyBridges " parent="." index="2" groups=["navigation_mesh_source_group"]]
+visible = false
+
+[node name="StaticBody3D" parent="EnemyBridges " index="0"]
+collision_layer = 64
+collision_mask = 32
+
+[node name="Obstacles " parent="." index="3" groups=["radioactive"]]
+surface_material_override/0 = SubResource("StandardMaterial3D_0fjrg")

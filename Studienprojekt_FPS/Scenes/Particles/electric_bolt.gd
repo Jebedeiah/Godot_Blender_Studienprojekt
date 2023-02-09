@@ -2,8 +2,8 @@ extends AnimatableBody3D
 
 var shoot = false
 
-var damage = 150
-var bullet_speed = 50
+var damage = 220
+var bullet_speed = 70
 var motion = Vector3(0,0,0)
 
 
