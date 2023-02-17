@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjqc3xuhkmoy7"]
+
+[ext_resource type="Texture2D" uid="uid://bsmxv854t30se" path="res://Particles/PNG (Transparent)/spark_02.png" id="1_lu115"]
+[ext_resource type="AudioStream" uid="uid://cnhj2nhp2xhmo" path="res://Audio/hit.mp3" id="2_fchrj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyxpq"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_lu115")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_x8yvw"]
+offsets = PackedFloat32Array(0, 0.520468, 1)
+colors = PackedColorArray(1.63645e-06, 0.445869, 0.677024, 1, 0.732886, 0.267603, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jd8d2"]
+gradient = SubResource("Gradient_x8yvw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jlkmy"]
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.7
+linear_accel_min = -3.0
+linear_accel_max = -3.0
+angle_max = 360.0
+scale_min = 4.0
+scale_max = 4.0
+color = Color(0, 0.568627, 0.878431, 1)
+color_ramp = SubResource("GradientTexture1D_jd8d2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rpfjq"]
+
+[node name="BoltHit" type="Node3D"]
+
+[node name="hitParticles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_iyxpq")
+emitting = false
+amount = 200
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_jlkmy")
+draw_pass_1 = SubResource("QuadMesh_rpfjq")
+
+[node name="hitAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_fchrj")
+volume_db = -10.0

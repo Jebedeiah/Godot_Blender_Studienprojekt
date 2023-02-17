@@ -12,12 +12,12 @@ func emit():
 
 # shorten or lengthen the laser depending on how far away the target is
 func enhance(distance):
-	if distance > 40:
-		distance = 40
-	laser.process_material.emission_box_extents.y = distance
-	laser.position.z = -distance
-	laser2.process_material.emission_box_extents.y = distance
-	laser2.position.z = -distance
+	if distance > 50:
+		distance = 50
+	laser.process_material.emission_box_extents.y = distance/2
+	laser2.process_material.emission_box_extents.y = distance/2
+	laser.position.z = -distance/2
+	laser2.position.z = -distance/2
 
 
 # Stop emitting the laser, but wait with freeing the particles node to show the particles fading

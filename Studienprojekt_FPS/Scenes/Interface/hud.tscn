@@ -45,7 +45,7 @@ length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CenterContainer/HBoxContainer/WaveCount:text")
+tracks/0/path = NodePath("../WaveInfo/HBoxContainer/WaveCount:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +57,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CenterContainer/HBoxContainer/WaveCount:visible")
+tracks/1/path = NodePath("../WaveInfo/HBoxContainer/WaveCount:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -69,7 +69,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CenterContainer/HBoxContainer/NextWaveLabel:visible")
+tracks/2/path = NodePath("../WaveInfo/HBoxContainer/NextWaveLabel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -84,7 +84,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CenterContainer/HBoxContainer/WaveCount:text")
+tracks/0/path = NodePath("../WaveInfo/HBoxContainer/WaveCount:text")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +96,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../CenterContainer/HBoxContainer/WaveCount:visible")
+tracks/1/path = NodePath("../WaveInfo/HBoxContainer/WaveCount:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,7 +108,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../CenterContainer/HBoxContainer/NextWaveLabel:visible")
+tracks/2/path = NodePath("../WaveInfo/HBoxContainer/NextWaveLabel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -198,17 +198,17 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="WaveInfo" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_left = 790.5
 offset_top = 170.0
 offset_right = 1183.5
 offset_bottom = 224.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WaveInfo"]
 layout_mode = 2
 
-[node name="NextWaveLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="NextWaveLabel" type="Label" parent="WaveInfo/HBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.854902, 0.215686, 0.168627, 1)
@@ -219,7 +219,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="WaveCount" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="WaveCount" type="Label" parent="WaveInfo/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
@@ -237,6 +237,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="FadeInPlayer" type="AnimationPlayer" parent="."]

@@ -33,6 +33,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var weapon = $CamRoot/Camera3D/Hand/RailGun_new
 @onready var aimCast = $CamRoot/Camera3D/AimCast
 @onready var hand = $CamRoot/Camera3D/Hand
+@onready var alt_fire_audio = $AltFireAudio
+@onready var fire_audio = $FireAudio
+@onready var dmg_audio = $dmgAudio
 
 
 func _ready():
@@ -108,10 +111,12 @@ func movement(delta):
 
 
 # Lose health as long as the player touches a radioactive obstacle
-func touchingRadioactiveWall():
+func touchingRadioactiveWall():	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider().get_parent().is_in_group("radioactive"):
+			if dmg_audio.is_playing() == false:
+				dmg_audio.play()
 			health -= 1
 
 
@@ -119,23 +124,29 @@ func touchingRadioactiveWall():
 func fire_weapon():
 	# Fire the laser as long as the button is pressed and deal damage if an enemy is hit
 	if Input.is_action_pressed("fire") and not weapon.fireAnimPlayer.is_playing():
-		
+		if fire_audio.is_playing() == false:
+			fire_audio.play()
 		if aimCast.is_colliding():
-			var target = aimCast.get_collider()
-			if target.is_in_group("Enemies"):
-				target.health -= laser_damage
-				
 			collision_point = aimCast.get_collision_point()
+			var target = aimCast.get_collider()
+			var distance = weapon.get_node("Muzzle").global_transform.origin.distance_to(collision_point)
+			if target.is_in_group("Enemies") and distance <= 50:
+				target.health -= laser_damage
+			
 			weapon.fire_laser(collision_point)
 			if not lc:
 				lc = laser_collision.instantiate()
 				get_parent().add_child(lc)
 			lc.position = collision_point
-			lc.get_node("CollisionParticle").emitting = true
+			if distance <= 50:
+				lc.get_node("CollisionParticle").emitting = true
+			else:
+				lc.get_node("CollisionParticle").emitting = false
 			laser_active = true
 	
 	# Stop firing the laser when the button is released
 	if Input.is_action_just_released("fire") and not weapon.fireAnimPlayer.is_playing() and laser_active:
+		fire_audio.stop()
 		weapon.stop_laser()
 		lc.get_node("CollisionParticle").emitting = false
 		laser_active = false
@@ -143,7 +154,7 @@ func fire_weapon():
 	
 	# Fire the electric bolt
 	if Input.is_action_just_pressed("alt_fire") and not weapon.fireAnimPlayer.is_playing() and not laser_active:
-		
+		alt_fire_audio.play()
 		if aimCast.is_colliding():
 			collision_point = aimCast.get_collision_point()
 			weapon.fire_projectile(collision_point)

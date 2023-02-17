@@ -11,7 +11,7 @@ class_name Enemy
 @onready var world = get_parent()
 
 var health = 300
-const SPEED = 8.0
+const SPEED = 9.0
 const TURN_SPEED = 4
 var distance_to_player = 0
 
@@ -19,11 +19,15 @@ var current_location
 var next_location
 var new_velocity
 var e = null
+var world_e
 
 signal enemy_killed
 
 
-
+func _ready():
+	e = explosion.instantiate()
+	world.add_child(e)
+	world_e = world.get_node("Explosion")
 
 # Calculate velocity for next movement
 func _physics_process(_delta):
@@ -80,10 +84,8 @@ func _on_aura_timer_timeout():
 	player.health -= 3
 
 
-func _on_enemy_killed():
-	if not e:
-		e = explosion.instantiate()
-		world.add_child(e)
-	e.position = position
-	e.get_node("ParticleExplosion").emitting = true
+func _on_enemy_killed():	
+	world_e.position = position
+	world_e.get_node("ParticleExplosion").emitting = true
+	world_e.get_node("explosionAudio").play()
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://cbxn3kwnummlc"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/victory.gd" id="1_jba6t"]
 [ext_resource type="FontFile" uid="uid://boxij7rq72aiw" path="res://Fonts/Ghost Factory.ttf" id="1_ktsxx"]
@@ -101,7 +101,7 @@ offset_bottom = 423.0
 theme_override_colors/font_color = Color(0.631373, 0.631373, 0.631373, 1)
 theme_override_fonts/font = ExtResource("2_uyk2e")
 theme_override_font_sizes/font_size = 100
-text = "You managed to survive another day."
+text = "You managed to survive another day"
 horizontal_alignment = 1
 vertical_alignment = 1
 

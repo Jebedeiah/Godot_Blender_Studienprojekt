@@ -1,16 +1,30 @@
 extends AnimatableBody3D
 
-var shoot = false
+#var shoot = false
 
 var damage = 220
 var bullet_speed = 70
-var motion = Vector3(0,0,0)
+var motion = Vector3()
+var bh = null
+var world_bh
 
+@onready var world = get_node("/root/World")
+@onready var bolt_hit = preload("res://Scenes/Particles/bolt_hit.tscn")
+
+
+func _ready():
+	bh = bolt_hit.instantiate()
+	world.add_child(bh)
+	world_bh = world.get_node("BoltHit")
 
 # If a bolt hits an enemy, it deals damage to it and gets freed
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("Enemies"):
 		body.health -= damage
+	
+	world_bh.position = position
+	world_bh.get_node("hitParticles").emitting = true
+	world_bh.get_node("hitAudio").play()
 	queue_free()
 
 

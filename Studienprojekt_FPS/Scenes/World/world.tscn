@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgon5jfx3hptv"]
+[gd_scene load_steps=13 format=3 uid="uid://bkn60jykhonyr"]
 
 [ext_resource type="PackedScene" uid="uid://dthwxyi8hbk3x" path="res://Scenes/Player/player.tscn" id="1_fov6d"]
 [ext_resource type="Script" path="res://Scenes/World/world.gd" id="1_o1qul"]
-[ext_resource type="Texture2D" uid="uid://b6tnbk2apvnq3" path="res://satara_night_no_lamps_4k.hdr" id="2_y6mhw"]
+[ext_resource type="Texture2D" uid="uid://b6tnbk2apvnq3" path="res://Imports/satara_night_no_lamps_4k.hdr" id="2_y6mhw"]
 [ext_resource type="PackedScene" uid="uid://tu45gi1j4yop" path="res://Scenes/Skybox/skybox.tscn" id="4_1q83y"]
-[ext_resource type="PackedScene" uid="uid://bxppddqyst4fi" path="res://Scenes/Map/map_new.tscn" id="4_obl5y"]
+[ext_resource type="PackedScene" uid="uid://bqcckw1qvueun" path="res://Scenes/Map/map_new.tscn" id="4_obl5y"]
 [ext_resource type="PackedScene" uid="uid://fovkpatw73pb" path="res://Scenes/Interface/hud.tscn" id="6_gkmoj"]
 [ext_resource type="Script" path="res://Scenes/World/Spawner.gd" id="7_gfbn6"]
 [ext_resource type="Script" path="res://Scenes/World/Wave.gd" id="8_3le3p"]
@@ -37,12 +37,6 @@ script = ExtResource("1_o1qul")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ybt05")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.993373, 0.114937, 0, 0.114937, 0.993373, -1, 4.34217e-08, -5.02406e-09, 0, 76.4234, 0)
-visible = false
-light_color = Color(1, 0.984314, 0.905882, 1)
-shadow_enabled = true
-
 [node name="Player" parent="." instance=ExtResource("1_fov6d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 2.1401, 0)
 
@@ -51,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 2.1401, 0)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_xmsva")
 
-[node name="MapNew" parent="NavigationRegion3D" instance=ExtResource("4_obl5y")]
+[node name="Map" parent="NavigationRegion3D" instance=ExtResource("4_obl5y")]
 
 [node name="HUD" parent="." instance=ExtResource("6_gkmoj")]
 
@@ -115,25 +109,25 @@ omni_range = 28.409
 omni_attenuation = 0.901252
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="OmniLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 29, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 16, -20)
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 28.409
 omni_attenuation = 0.329878
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="OmniLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 34, 52)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 13, 52)
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 41.067
-omni_attenuation = 0.329878
+omni_attenuation = 0.353555
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="OmniLights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 29, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 16, 5)
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 28.409
-omni_attenuation = 0.48297
+omni_attenuation = 0.241485
 
 [node name="Spotlights" type="Node3D" parent="."]
 

@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dthwxyi8hbk3x"]
+[gd_scene load_steps=11 format=3 uid="uid://dthwxyi8hbk3x"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_63wl7"]
 [ext_resource type="Texture2D" uid="uid://qx28ayijvvqf" path="res://Scenes/Player/Crosshair.png" id="3_2clf1"]
 [ext_resource type="Script" path="res://Scenes/Player/Hand.gd" id="3_uwlef"]
 [ext_resource type="PackedScene" uid="uid://buyqkn701spo6" path="res://Scenes/Weapons/rail_gun_new.tscn" id="4_x7ovm"]
 [ext_resource type="PackedScene" uid="uid://b63l3lmg1mogp" path="res://Scenes/Menu/pause.tscn" id="5_ty0nv"]
+[ext_resource type="AudioStream" uid="uid://fyc6u7p3wtjn" path="res://Audio/alt_fire_all.mp3" id="6_n2gn6"]
+[ext_resource type="AudioStream" uid="uid://c076dnyj1p3bt" path="res://Audio/fire_laser.mp3" id="7_5o4vl"]
+[ext_resource type="AudioStream" uid="uid://bbcbg7cjvwc3d" path="res://Audio/dmg_taken.mp3" id="8_umdno"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5vu40"]
 
@@ -19,7 +22,7 @@ script = ExtResource("1_63wl7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_5vu40")
 
-[node name="Body" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_6ur7r")
 
 [node name="CamRoot" type="Node3D" parent="."]
@@ -58,3 +61,18 @@ sway_right = Vector3(0, -0.05, 0)
 [node name="RailGun_new" parent="CamRoot/Camera3D/Hand" instance=ExtResource("4_x7ovm")]
 
 [node name="Pause" parent="." instance=ExtResource("5_ty0nv")]
+
+[node name="AltFireAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_n2gn6")
+volume_db = -40.0
+max_polyphony = 2
+
+[node name="FireAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_5o4vl")
+volume_db = -35.0
+max_polyphony = 2
+
+[node name="dmgAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_umdno")
+volume_db = -20.0
+max_polyphony = 2

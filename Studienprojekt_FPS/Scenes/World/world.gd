@@ -2,7 +2,11 @@ extends Node3D
 
 @onready var player = $Player
 @onready var spawner = $Spawner
+var ingame_music = preload("res://Audio/ingame_music.mp3")
 
+
+func _ready():
+	MusicController.play_music(ingame_music)
 
 # Give the enemies the current position of the player to calculate a path
 func _physics_process(_delta):

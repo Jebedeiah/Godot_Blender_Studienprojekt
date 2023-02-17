@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://8t4x8q2rpgtv"]
+
+[ext_resource type="PackedScene" uid="uid://buyqkn701spo6" path="res://Scenes/Weapons/rail_gun_new.tscn" id="1_amv2j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4nm5d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7313o"]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4nm5d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7313o")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49884, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+
+[node name="RailGun_new" parent="." instance=ExtResource("1_amv2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.246855, 0.336598, -0.369399)

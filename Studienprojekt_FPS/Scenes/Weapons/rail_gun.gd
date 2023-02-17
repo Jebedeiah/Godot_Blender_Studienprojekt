@@ -5,7 +5,7 @@ extends Node3D
 
 @onready var muzzle = $Muzzle
 
-@onready var bullet = preload("res://Scenes/Weapons/bullet.tscn")
+#@onready var bullet = preload("res://Scenes/Weapons/bullet.tscn")
 @onready var bolt = preload("res://Scenes/Particles/electric_bolt.tscn")
 @onready var laser = preload("res://Scenes/Particles/laser_beam.tscn")
 
