@@ -11,7 +11,7 @@ class_name Enemy
 @onready var world = get_parent()
 
 var health = 300
-const SPEED = 9.0
+const SPEED = 8.0
 const TURN_SPEED = 4
 var distance_to_player = 0
 

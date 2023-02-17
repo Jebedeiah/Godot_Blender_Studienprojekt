@@ -251,20 +251,24 @@ script = ExtResource("1_hgkpx")
 transform = Transform3D(-7.23998e-07, 0, 0.2, 0, 0.2, 0, -0.2, 0, -7.23998e-07, 0, 0, 0)
 
 [node name="Stock" type="MeshInstance3D" parent="Body"]
+layers = 2
 mesh = SubResource("ArrayMesh_2aah5")
 skeleton = NodePath("")
 
 [node name="Scope" type="MeshInstance3D" parent="Body"]
+layers = 2
 mesh = SubResource("ArrayMesh_xw41p")
 skeleton = NodePath("")
 
 [node name="Coils" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0112696, 0, 0)
+layers = 2
 mesh = SubResource("ArrayMesh_javr4")
 skeleton = NodePath("")
 
 [node name="Laser" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00013573)
+layers = 2
 mesh = SubResource("ArrayMesh_rf1j2")
 skeleton = NodePath("")
 

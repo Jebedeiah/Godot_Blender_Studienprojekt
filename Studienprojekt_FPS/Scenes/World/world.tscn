@@ -89,6 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 10, -51)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 14)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 50.693
@@ -96,6 +97,7 @@ omni_attenuation = 0.901252
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -38)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 41.067
@@ -103,6 +105,7 @@ omni_attenuation = 0.901252
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 9, -41)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 28.409
@@ -110,6 +113,7 @@ omni_attenuation = 0.901252
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 16, -20)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 28.409
@@ -117,6 +121,7 @@ omni_attenuation = 0.329878
 
 [node name="OmniLight3D5" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 13, 52)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 41.067
@@ -124,6 +129,7 @@ omni_attenuation = 0.353555
 
 [node name="OmniLight3D6" type="OmniLight3D" parent="OmniLights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54, 16, 5)
+layers = 3
 light_color = Color(0.160784, 0.615686, 0, 1)
 light_energy = 16.0
 omni_range = 28.409
@@ -133,6 +139,7 @@ omni_attenuation = 0.241485
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(0.752805, -0.458963, -0.471845, 0.0124648, -0.706756, 0.707348, -0.658126, -0.538376, -0.526329, -58, 35, -58)
+layers = 3
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
 spot_range = 105.933
@@ -141,6 +148,7 @@ spot_angle = 40.44
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(0.707107, 0.5, 0.5, -1.57897e-08, -0.707107, 0.707107, 0.707107, -0.5, -0.5, 59, 35, -58)
+layers = 3
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
 spot_range = 105.933
@@ -149,6 +157,7 @@ spot_angle = 40.44
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(-0.707107, 0.5, 0.5, -8.77389e-08, -0.707107, 0.707107, 0.707107, 0.5, 0.5, 60, 35, 59)
+layers = 3
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
 spot_range = 105.933
@@ -157,6 +166,7 @@ spot_angle = 40.44
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Spotlights"]
 transform = Transform3D(-0.707107, -0.5, -0.5, -6.66655e-08, -0.707107, 0.707107, -0.707107, 0.5, 0.5, -59, 35, 59)
+layers = 3
 light_color = Color(0.478431, 0.462745, 1, 1)
 light_energy = 16.0
 spot_range = 105.933

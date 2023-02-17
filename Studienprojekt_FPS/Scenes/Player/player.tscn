@@ -14,7 +14,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ur7r"]
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
 collision_layer = 2
 collision_mask = 133
 script = ExtResource("1_63wl7")
@@ -29,6 +28,8 @@ shape = SubResource("CapsuleShape3D_6ur7r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.492829, -0.358137)
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot"]
+cull_mask = 1048573
+current = true
 
 [node name="TextureRect" type="TextureRect" parent="CamRoot/Camera3D"]
 anchors_preset = 8
@@ -48,7 +49,6 @@ texture = ExtResource("3_2clf1")
 expand_mode = 1
 
 [node name="AimCast" type="RayCast3D" parent="CamRoot/Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -300)
 collision_mask = 53
 
@@ -59,6 +59,24 @@ sway_left = Vector3(0, 0.05, 0)
 sway_right = Vector3(0, -0.05, 0)
 
 [node name="RailGun_new" parent="CamRoot/Camera3D/Hand" instance=ExtResource("4_x7ovm")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CamRoot/Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CamRoot/Camera3D/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="GunCam" type="Camera3D" parent="CamRoot/Camera3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493, -0.358)
+cull_mask = 2
+current = true
 
 [node name="Pause" parent="." instance=ExtResource("5_ty0nv")]
 

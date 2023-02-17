@@ -30,6 +30,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var world = get_parent()
 @onready var camRoot = $CamRoot
 @onready var camera = $CamRoot/Camera3D
+@onready var guncam = $CamRoot/Camera3D/SubViewportContainer/SubViewport/GunCam
 @onready var weapon = $CamRoot/Camera3D/Hand/RailGun_new
 @onready var aimCast = $CamRoot/Camera3D/AimCast
 @onready var hand = $CamRoot/Camera3D/Hand
@@ -57,7 +58,11 @@ func _input(event):
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
-func _physics_process(delta):
+func _process(_delta):
+	guncam.global_transform = camera.global_transform
+	
+
+func _physics_process(delta):		
 	fire_weapon()
 	movement(delta)
 	
